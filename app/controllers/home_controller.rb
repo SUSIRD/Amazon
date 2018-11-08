@@ -6,4 +6,13 @@ class HomeController < ApplicationController
   def hello
     @name = params[:name]
   end
+
+  def about
+  end
+
+  def contact_us
+  end
+
+  def prices
+  end
 end
