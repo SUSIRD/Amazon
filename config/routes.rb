@@ -1,21 +1,22 @@
 Rails.application.routes.draw do
 
+  # Index, Root or Home
+  root 'home#index'
 
-  get 'blog/index'
-  get 'blog/edit'
-  get 'blog/new'
-  get 'blog/show'
-  #get 'home', to: 'home#index'
-
-  #get 'home/index'
+  # Home Routes
   get '/home/index', to: 'home#index', as: 'cualquier_cosa'
-
-  #get '/home/:name', to: 'home#hello'
-
   get '/home/about', to: 'home#about'
   get '/home/contact_us', to: 'home#contact_us'
   get '/home/prices', to: 'home#prices'
 
-  root 'home#index'
+  # Blog Routes
+  get 'blog/index'
+  get 'blog/edit'
+  get 'blog/new'
+  get 'blog/show'
+
+  # Admin Routes
+  get 'admin/index'
+  get 'admin/show'
 
 end
