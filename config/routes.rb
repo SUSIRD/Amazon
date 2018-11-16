@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   # Index, Root or Home
   root 'home#index'
 
+  resources :posts
+
+  # get 'posts/index', to: 'posts#index'
+  # post 'post/new', to: 'posts#new'
+
   # Home Routes
   # get '/home/index', to: 'home#index', as: 'cualquier_cosa'
   # get '/home/about', to: 'home#about'
