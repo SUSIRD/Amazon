@@ -20,8 +20,9 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      redirect_to posts_path
+      redirect_to posts_path, notice: "El post fue creado exitosamente"
     else
+      flash[:alert] = "El post fallo en crearse, vuelva a ingresarlo"
       render :new
     end
   end
@@ -33,13 +34,20 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to posts_path
+      redirect_to posts_path, notice: "El post fue actualizado exitosamente"
     else
+      flash[:alert] = "El post fallo en editarse, vuelva a ingresarlo"
       render :edit
     end
   end
 
   def destroy
+    post = Post.find(params[:id])
+    post.destroy
+
+    # flash[:notice] = "El post fue eliminado exitosamente!"
+
+    redirect_to posts_path, notice: "El post fue eliminado exitosamente!"
   end
 
   private
