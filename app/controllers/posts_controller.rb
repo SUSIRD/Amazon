@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
-  before_action :validate_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  # before_action :validate_user, only: [:edit, :update, :destroy]
+  before_action :is_admin?, only: [:edit, :update, :destroy]
 
   def index
-    @posts = current_user.posts
+    @posts = Post.all
   end
 
   def show
@@ -46,10 +47,17 @@ class PostsController < ApplicationController
       params.require(:post).permit(:user_id, :title, :content)
     end
 
-    def validate_user
-      unless current_user.posts.ids.to_s.include? params[:id]
+    # def validate_user
+    #   unless current_user.posts.ids.to_s.include? params[:id]
+    #     redirect_to root_path
+    #     flash[:alert] = "You don't have permissions"
+    #   end
+    # end
+
+    def is_admin?
+      unless current_user.admin?
+        flash[:alert] = "You dont have permissions"
         redirect_to root_path
-        flash[:alert] = "You don't have permissions"
       end
     end
 

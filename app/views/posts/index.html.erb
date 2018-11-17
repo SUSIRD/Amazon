@@ -1,6 +1,8 @@
 <h1>Posts</h1>
 
-<%= link_to "Crear nuevo post", new_post_path %>
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to "Crear nuevo post", new_post_path %>
+<% end %>
 
 <table>
   <thead>
@@ -20,7 +22,9 @@
         <td>
           <%#= link_to "Texto que va a aparecer", ruta_path, method, class %>
           <%= link_to "Mostrar", post_path(post) %>
-          <%= link_to "Editar", edit_post_path(post) %>
+          <% if user_signed_in? && current_user.admin? %>
+            <%= link_to "Editar", edit_post_path(post) %>
+          <% end %>
         </td>
       </tr>
     <% end %>
