@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   # Index, Root or Home
   root 'home#index'
 
-  resources :posts
-
+  resources :posts do
+    resources :comments
+  end
+  
   # get 'posts/index', to: 'posts#index'
   # post 'post/new', to: 'posts#new'
 

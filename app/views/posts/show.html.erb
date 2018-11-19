@@ -3,3 +3,9 @@
 <div>ID: <%= @post.id %></div>
 <div>Title: <%= @post.title %></div>
 <div>Content: <%= @post.content %></div>
+
+<%#= render @post.comments %>
+
+<%= render "comments/comments" %>
+
+<%= render 'comments/form' %>
