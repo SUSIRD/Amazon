@@ -1,5 +1,6 @@
 <body class="text-center">
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-signin" }) do |f| %>
+    <%= render "layouts/alerts" %>
     <%= devise_error_messages! %>
 
     <%= image_tag("bootstrap-solid.svg", width: '72', height: '72', class: "mb-4") %>
