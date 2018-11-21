@@ -82,10 +82,15 @@
 
       <% @posts.each do |post| %>
         <div class="blog-post">
-          <h2 class="blog-post-title"><%= post.title %></h2>
+          <h2 class="blog-post-title"><%= link_to post.title, post_path(post.id), class: "text-muted", style: "text-decoration:none;" %></h2>
           <p class="blog-post-meta"><%= time_ago_in_words(post.created_at) %> ago by <a href="#"><%= post.user.email %></a></p>
           <p>
-            <%= post.content %>
+            <% if post.content.length > 250 %>
+              <%= truncate(post.content, length: 250)  %>
+              <%= link_to "... Read More", post_path(post.id) %>
+            <% else %>
+              <%= post.content %>
+            <% end %>
           </p>
         </div><!-- /.blog-post -->
       <% end %>
