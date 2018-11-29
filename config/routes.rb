@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments
   end
-  
+
+  resources :subscriptors, only: [:new, :create]
+
   # get 'posts/index', to: 'posts#index'
   # post 'post/new', to: 'posts#new'
 
