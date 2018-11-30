@@ -61,6 +61,7 @@ class PostsController < ApplicationController
   end
 
   private
+  # Strong parameters
     def post_params
       params.require(:post).permit(:user_id, :title, :content, :category_id)
     end
