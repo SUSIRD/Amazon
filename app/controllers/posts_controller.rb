@@ -8,6 +8,16 @@ class PostsController < ApplicationController
       @posts = Post.all
                    .order(created_at: :desc)
                    .paginate(page: params[:page], per_page: 2)
+
+      @last_post = Post.last
+
+      # Last posts of category "Shoes"
+      @shoes_category = Category.find_by(name: "Shoes")
+      @shoes_last_post = @shoes_category.posts.last
+
+      # Last posts of category "Glasess"
+      @glasses_category = Category.find_by(name: "Glasses")
+      @glasses_last_post = @glasses_category.posts.last
     else
       @category_id = Category.find_by(name: params[:category]).id
       @posts = Post.where(category_id: @category_id)
