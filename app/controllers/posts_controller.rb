@@ -45,10 +45,16 @@ class PostsController < ApplicationController
       title = @post.title
       id = @post.id
       users = User.where(role: "user")
+      subscriptors = Subscriptor.all
 
       users.each do |user|
         user_email = user.email
         UserNotifierMailer.new_post_notifying_user(user_email, title, id).deliver_now
+      end
+
+      subscriptors.each do |subscriptor|
+        subscriptor_email = subscriptor.email
+        UserNotifierMailer.new_post_notifying_subscriptor(subscriptor_email, title, id).deliver_now
       end
       # End
 
