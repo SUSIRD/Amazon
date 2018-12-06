@@ -40,6 +40,19 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
+
+      # Send email to users with new post link
+      title = @post.title
+      id = @post.id
+      users = User.where(role: "user")
+
+      users.each do |user|
+        user_email = user.email
+        UserNotifierMailer.new_post_notifying_user(user_email, title, id).deliver_now
+      end
+      # End
+
+
       redirect_to posts_path, notice: "El post fue creado exitosamente"
     else
       flash[:alert] = "El post fallo en crearse, vuelva a ingresarlo"
