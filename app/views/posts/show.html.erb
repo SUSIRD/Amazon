@@ -21,7 +21,7 @@
           <p>
             <% if user_signed_in? && current_user.admin? %>
               <%= link_to "Editar", edit_post_path(@post), class: "btn btn-primary" %>
-              <%= link_to "Eliminar", post_path(@post), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+              <%= button_to "Eliminar", post_path(@post), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
             <% end %>
           </p>
           <p>
