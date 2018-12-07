@@ -75,6 +75,27 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
+
+      # Send email to users with edited post link
+      title = @post.title
+      id = @post.id
+      users = User.where(role: "user")
+      subscriptors = Subscriptor.all
+
+      users.each do |user|
+        email = user.email
+        type_user = "User"
+        UserNotifierMailer.edit_post_notifying(email, title, id, type_user).deliver_now
+      end
+
+      subscriptors.each do |subscriptor|
+        email = subscriptor.email
+        type_user = "Subscriptor"
+        UserNotifierMailer.edit_post_notifying(email, title, id, type_user).deliver_now
+      end
+      # End
+
+
       redirect_to posts_path, notice: "El post fue actualizado exitosamente"
     else
       flash[:alert] = "El post fallo en editarse, vuelva a ingresarlo"
