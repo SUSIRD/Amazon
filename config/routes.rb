@@ -10,6 +10,12 @@ Rails.application.routes.draw do
 
   resources :subscriptors, only: [:new, :create]
 
+  # # Admin Routes
+  get 'admin', to: 'admin#index'
+  # get 'admin/index'
+  # get 'admin/show'
+
+
   # get 'posts/index', to: 'posts#index'
   # post 'post/new', to: 'posts#new'
 
@@ -24,9 +30,5 @@ Rails.application.routes.draw do
   # get 'blog/edit'
   # get 'blog/new'
   # get 'blog/show'
-  #
-  # # Admin Routes
-  # get 'admin/index'
-  # get 'admin/show'
 
 end
