@@ -6,6 +6,9 @@ class AdminController < ApplicationController
 
   def index
     @users = User.all.order(created_at: :desc)
+    @posts = Post.all.order(created_at: :desc)
+    @comments = Comment.all.count
+    @subscriptors = Subscriptor.all.order(created_at: :desc)
   end
 
   private

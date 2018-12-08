@@ -27,7 +27,10 @@
 
       <h2>Users</h2>
       <%= render 'users_table' %>
-      
+
+      <hr>
+      <h2>Posts</h2>
+      <%= render 'posts_table' %>
 
     </main>
   </div>
@@ -46,11 +49,11 @@
 <script>
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
       labels: ["Users", "Posts", "Comments", "Subscriptors"],
       datasets: [{
-        data: [<%= @users.count %>, 21345, 18483, 24003],
+        data: [<%= @users.count %>, <%= @posts.count %>, <%= @comments %>, <%= @subscriptors.count %>],
         lineTension: 0,
         backgroundColor: 'transparent',
         borderColor: '#007bff',
