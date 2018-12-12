@@ -9,6 +9,10 @@ class AdminController < ApplicationController
     @subscriptors = Subscriptor.all.order(created_at: :desc)
   end
 
+  def products
+    @products = Product.all.order(created_at: :desc)
+  end
+
   private
     def is_admin?
       unless current_user.admin?

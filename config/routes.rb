@@ -12,8 +12,11 @@ Rails.application.routes.draw do
 
   # # Admin Routes
   get 'admin', to: 'admin#index'
+  get 'admin/products', to: 'admin#products'
   # get 'admin/index'
   # get 'admin/show'
+
+  resources :products, only: [:new, :create]
 
 
   # get 'posts/index', to: 'posts#index'
