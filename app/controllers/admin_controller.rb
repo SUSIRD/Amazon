@@ -2,8 +2,6 @@ class AdminController < ApplicationController
   before_action :authenticate_user!
   before_action :is_admin?
 
-  layout "admin"
-
   def index
     @users = User.all.order(created_at: :desc)
     @posts = Post.all.order(created_at: :desc)
