@@ -36,12 +36,7 @@
           </thead>
           <tbody>
             <% @products.each do |product| %>
-              <tr>
-                <td><%= product.id %></td>
-                <td><%= product.name %></td>
-                <td><%= product.price %></td>
-                <td><%= product.active %></td>
-              </tr>
+              <%= render 'row', product: product %>
             <% end %>
           </tbody>
         </table>

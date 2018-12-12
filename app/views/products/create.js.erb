@@ -1,0 +1,9 @@
+<% if @product.errors.empty? %>
+  // añadir el row a la tabla, mostrar alerta y esconder el modal
+  $('table tbody').prepend('<%= j render "admin/row", product: @product %>');
+  $('.alert-success').html("El producto ha sido creado con exito").show();
+  $('#product-modal').modal('hide');
+<% else %>
+  // mostrar el primer error
+  alert('<%= @product.errors.full_messages[0] %>');
+<% end %>
