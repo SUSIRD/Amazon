@@ -6,6 +6,9 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments
+    member do
+      patch :publish
+    end
   end
 
   resources :subscriptors, only: [:new, :create]

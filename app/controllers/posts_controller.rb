@@ -112,10 +112,16 @@ class PostsController < ApplicationController
     redirect_to posts_path, notice: "El post fue eliminado exitosamente!"
   end
 
+  def publish
+    sleep 2
+    @post = Post.find(params[:id])
+    @post.update(published_at: Time.zone.now)
+  end
+
   private
   # Strong parameters
     def post_params
-      params.require(:post).permit(:user_id, :title, :content, :category_id)
+      params.require(:post).permit(:user_id, :title, :content, :category_id, :published_at)
     end
 
     # def validate_user
