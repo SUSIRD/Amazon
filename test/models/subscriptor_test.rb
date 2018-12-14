@@ -12,7 +12,8 @@
 require 'test_helper'
 
 class SubscriptorTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "Subscriptor should have a name" do
+    @subscriptor = Subscriptor.new
+    assert_not @subscriptor.save
+  end
 end
