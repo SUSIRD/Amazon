@@ -2,6 +2,10 @@ class SubscriptorsController < ApplicationController
 
   layout "signin"
 
+  def index
+
+  end
+
   def new
     @subscriptor = Subscriptor.new
   end
