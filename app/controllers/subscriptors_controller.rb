@@ -25,6 +25,26 @@ class SubscriptorsController < ApplicationController
     end
   end
 
+  def show
+    
+  end
+
+  def edit
+    
+  end
+
+  def update
+    @subscriptor = Subscriptor.find(params[:id])
+    redirect_to subscriptor_path(@subscriptor)
+  end
+
+  def destroy
+    @subscriptor = Subscriptor.find(params[:id])
+    @subscriptor.destroy
+
+    redirect_to subscriptors_path
+  end
+
   private
     def subscriptor_params
       params.require(:subscriptor).permit(:name, :email)
