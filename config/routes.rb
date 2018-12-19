@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'order_items/create'
+  get 'order_items/update'
+  get 'order_items/destroy'
+  get 'carts/show'
   devise_for :users
   # Index, Root or Home
   root 'home#index'
@@ -19,7 +23,9 @@ Rails.application.routes.draw do
   # get 'admin/index'
   # get 'admin/show'
 
-  resources :products, only: [:new, :create]
+  resources :products, only: [:index, :new, :create]
+  resource :cart, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]
 
 
 
