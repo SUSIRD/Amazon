@@ -9,7 +9,7 @@ class Order < ApplicationRecord
 
   before_save :update_subtotal
 
-  def subtotal
+  def calculate_total
   	# order_items.collect { |oi| oi.valid? ? (oi.quantity * oi.unit_price) : 0 }.sum
   	self.order_items.collect { |oi| oi.product.price * oi.quantity }.sum
   end
@@ -20,9 +20,9 @@ class Order < ApplicationRecord
   		self.order_status_id = 1
   	end
 
-  	def update_subtotal
+  	def update_total
   		# self[:subtotal] = subtotal
-  		self.total = subtotal
+  		self.total = calculate_total
   	end
 
   # has_many :order_items
